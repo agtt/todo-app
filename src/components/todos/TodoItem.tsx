@@ -25,7 +25,7 @@ export const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
       </div>
       <button
         onClick={() => onDelete(todo._id.toString())}
-        className="text-red-500 transition-colors hover:text-red-700 cursor-pointer"
+        className="cursor-pointer text-red-500 transition-colors hover:text-red-700"
       >
         <Trash2 className="h-5 w-5" />
       </button>
