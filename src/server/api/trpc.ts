@@ -3,6 +3,7 @@ import "server-only";
 import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { models } from "@/lib/models";
 
 /**
  * 1. CONTEXT
@@ -19,6 +20,7 @@ import { ZodError } from "zod";
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   return {
     ...opts,
+    models,
   };
 };
 
