@@ -1,15 +1,10 @@
-"use server";
+import "server-only";
 
 import { ObjectId } from "mongodb";
 import { getCollection } from "../db";
+import { ITodo } from "@/types/todo";
 
 const COLLECTION_NAME = "todos";
-
-export interface ITodo {
-  _id: ObjectId;
-  text: string;
-  done: boolean;
-}
 
 export const getTodos = async (): Promise<ITodo[]> => {
   const collection = await getCollection<ITodo>(COLLECTION_NAME);

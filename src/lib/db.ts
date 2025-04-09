@@ -1,4 +1,4 @@
-"use server";
+import "server-only";
 
 import { MongoClient, Collection, Document } from "mongodb";
 
