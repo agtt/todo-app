@@ -30,13 +30,9 @@ const TodoList = () => {
     addTodo({ text: newTodoText });
   };
 
-  const handleToggleTodo = (id: string) => {
-    toggleTodo({ id });
-  };
+  const handleToggleTodo = (id: string) => toggleTodo({ id });
 
-  const handleDeleteTodo = (id: string) => {
-    removeTodo({ id });
-  };
+  const handleDeleteTodo = (id: string) => removeTodo({ id });
 
   return (
     <div className="mx-auto max-w-2xl p-6">
@@ -51,7 +47,7 @@ const TodoList = () => {
           onChange={(e) => setNewTodoText(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleAddTodo()}
           placeholder="Add a new task..."
-          className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-black"
         />
         <button
           onClick={handleAddTodo}
@@ -62,6 +58,11 @@ const TodoList = () => {
       </div>
 
       <div className="space-y-3">
+        {todos.length === 0 && (
+          <div className="text-center text-gray-500">
+            No tasks available. Add a new task to get started!
+          </div>
+        )}
         {todos.map((todo) => (
           <TodoItem
             key={todo._id.toString()}
