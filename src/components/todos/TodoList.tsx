@@ -2,12 +2,13 @@
 import { useState } from "react";
 import { api } from "@/trpc/react";
 import { TodoItem } from "./TodoItem";
+import { Loading } from "../ui";
 
 const TodoList = () => {
   const [newTodoText, setNewTodoText] = useState("");
+  const { data: todos = [], isLoading } = api.todo.getAll.useQuery();
 
   const utils = api.useUtils();
-  const { data: todos = [] } = api.todo.getAll.useQuery();
   const { mutate: addTodo } = api.todo.add.useMutation({
     onSuccess: () => {
       setNewTodoText("");
@@ -34,6 +35,8 @@ const TodoList = () => {
 
   const handleDeleteTodo = (id: string) => removeTodo({ id });
 
+  if (isLoading) return <Loading />;
+
   return (
     <div className="mx-auto max-w-2xl p-6">
       <h1 className="mb-8 text-center text-3xl font-bold text-gray-800">
@@ -47,7 +50,7 @@ const TodoList = () => {
           onChange={(e) => setNewTodoText(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleAddTodo()}
           placeholder="Add a new task..."
-          className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-black"
+          className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-black focus:ring-2 focus:ring-blue-500 focus:outline-none"
         />
         <button
           onClick={handleAddTodo}
