@@ -3,7 +3,7 @@ import "server-only";
 import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { models } from "@/lib/models";
+import { models } from "../models";
 
 /**
  * 1. CONTEXT
