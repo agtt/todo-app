@@ -1,11 +1,5 @@
-import { ITodo } from "@/types/todo";
+import { TodoItemProps } from "@/types/todo";
 import { Trash2 } from "lucide-react";
-
-interface TodoItemProps {
-  todo: ITodo;
-  onToggle: (id: string) => void;
-  onDelete: (id: string) => void;
-}
 
 export const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
   return (
