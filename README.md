@@ -1,53 +1,75 @@
-# Todo App - Banzai
+# Todo Application
 
-A modern todo application built with Next.js, TypeScript, and MongoDB. Features include adding, toggling, and deleting todos with persistent storage.
-
-## Prerequisites
-
-- Node.js 18+ or Bun
-- MongoDB running locally or accessible via connection string
-
-## Getting Started
-
-1. Clone the repository
-2. Install dependencies:
-
-   ```bash
-   npm install
-   # or
-   bun install
-   ```
-
-3. Create a `.env.local` file in the root directory with the following content:
-
-   ```
-   DATABASE_URL=mongodb://localhost:27017/todo-banzai
-   NEXT_PUBLIC_API_URL=http://localhost:3000
-   ```
-
-4. Start the development server:
-
-   ```bash
-   npm run dev
-   # or
-   bun run dev
-   ```
-
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+A modern Todo application built with Next.js, TypeScript, tRPC, and MongoDB.
 
 ## Features
 
-- Add new todos
-- Mark todos as complete/incomplete
-- Delete todos
-- Persistent storage using MongoDB
-- Modern UI with Tailwind CSS
-- Type-safe with TypeScript
+- Add new tasks
+- Mark tasks as complete/incomplete
+- Persistent storage
+- Clean and intuitive UI
+- Type-safe API with tRPC
 
 ## Tech Stack
 
-- Next.js 15
+- Next.js
 - TypeScript
+- tRPC
 - MongoDB
-- Tailwind CSS
-- React 19
+- Docker
+- Bun
+
+## Prerequisites
+
+- Docker and Docker Compose
+- Git
+
+## Getting Started
+
+### Using Docker (Recommended)
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/agtt/todo-app
+cd todo
+```
+
+2. Start the application:
+
+```bash
+docker-compose up
+```
+
+The application will be available at `http://localhost:3000`
+
+### Manual Setup
+
+1. Install dependencies:
+
+```bash
+bun install
+```
+
+2. Start the development server:
+
+```bash
+bun dev
+```
+
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Development
+
+- Development server runs on port 3000
+- MongoDB runs on port 27017
+- Hot reloading enabled
+- Type checking enabled
+
+## Testing
+
+Run tests with:
+
+```bash
+bun run test
+```
