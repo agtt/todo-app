@@ -11,8 +11,8 @@
     "typecheck": "tsc --noEmit",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache || true",
     "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.72.2",

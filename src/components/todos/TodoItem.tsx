@@ -10,6 +10,7 @@ export const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
           checked={todo.done}
           onChange={() => onToggle(todo._id.toString())}
           className="h-5 w-5 rounded text-blue-600 focus:ring-blue-500"
+          data-testid={`toggle-${todo._id}`}
         />
         <span
           className={`text-lg ${todo.done ? "text-gray-500 line-through" : "text-gray-800"}`}
@@ -20,6 +21,7 @@ export const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
       <button
         onClick={() => onDelete(todo._id.toString())}
         className="cursor-pointer text-red-500 transition-colors hover:text-red-700"
+        data-testid={`delete-${todo._id}`}
       >
         <Trash2 className="h-5 w-5" />
       </button>
