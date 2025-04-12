@@ -1,5 +1,5 @@
 "use client";
-import { useTodo } from "@/hooks/useTodo";
+import { useTodo } from "@/hooks";
 import { TodoItem } from "./TodoItem";
 import { TodoInput } from "./TodoInput";
 import { Loading } from "../ui";
