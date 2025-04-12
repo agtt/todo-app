@@ -8,14 +8,15 @@ export const useTodo = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // Initial fetch
-  const { data: initialTodos = [] } = api.todo.getAll.useQuery();
+  const { data: initialTodos = [], isLoading: isInitialLoading } =
+    api.todo.getAll.useQuery();
 
   // Update local state when initial data is loaded
   useEffect(() => {
     if (initialTodos.length > 0) {
       setTodos(initialTodos);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   }, [initialTodos]);
 
   const { mutate: addTodo, isPending: isAddingTodo } = api.todo.add.useMutation(
@@ -62,7 +63,8 @@ export const useTodo = () => {
   const handleToggleTodo = (id: string) => toggleTodo({ id });
   const handleDeleteTodo = (id: string) => removeTodo({ id });
 
-  const isProcessing = isAddingTodo || isTogglingTodo || isRemovingTodo;
+  const isProcessing =
+    isAddingTodo || isTogglingTodo || isRemovingTodo || isInitialLoading;
 
   return {
     todos,
