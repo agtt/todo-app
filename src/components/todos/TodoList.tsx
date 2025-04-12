@@ -1,41 +1,19 @@
 "use client";
-import { useState } from "react";
-import { api } from "@/trpc/react";
+import { useTodo } from "@/hooks/useTodo";
 import { TodoItem } from "./TodoItem";
+import { TodoInput } from "./TodoInput";
 import { Loading } from "../ui";
 
 const TodoList = () => {
-  const [newTodoText, setNewTodoText] = useState("");
-  const { data: todos = [], isLoading } = api.todo.getAll.useQuery();
-
-  const utils = api.useUtils();
-  const { mutate: addTodo } = api.todo.add.useMutation({
-    onSuccess: () => {
-      setNewTodoText("");
-      void utils.todo.getAll.invalidate();
-    },
-  });
-  const { mutate: toggleTodo } = api.todo.toggle.useMutation({
-    onSuccess: () => {
-      void utils.todo.getAll.invalidate();
-    },
-  });
-  const { mutate: removeTodo } = api.todo.remove.useMutation({
-    onSuccess: () => {
-      void utils.todo.getAll.invalidate();
-    },
-  });
-
-  const handleAddTodo = () => {
-    if (!newTodoText.trim()) return;
-    addTodo({ text: newTodoText });
-  };
-
-  const handleToggleTodo = (id: string) => toggleTodo({ id });
-
-  const handleDeleteTodo = (id: string) => removeTodo({ id });
-
-  if (isLoading) return <Loading />;
+  const {
+    todos,
+    isLoading,
+    newTodoText,
+    setNewTodoText,
+    handleAddTodo,
+    handleToggleTodo,
+    handleDeleteTodo,
+  } = useTodo();
 
   return (
     <div className="mx-auto max-w-2xl p-6">
@@ -43,35 +21,29 @@ const TodoList = () => {
         Todo List
       </h1>
 
-      <div className="mb-6 flex gap-2">
-        <input
-          type="text"
-          value={newTodoText}
-          onChange={(e) => setNewTodoText(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleAddTodo()}
-          placeholder="Add a new task..."
-          className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-black focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        />
-        <button
-          onClick={handleAddTodo}
-          className="rounded-lg bg-blue-500 px-6 py-2 text-white transition-colors hover:bg-blue-600"
-        >
-          Add
-        </button>
-      </div>
+      <TodoInput
+        value={newTodoText}
+        onChange={setNewTodoText}
+        onAdd={handleAddTodo}
+        isLoading={isLoading}
+      />
+
+      {isLoading && <Loading />}
 
       <div className="space-y-3">
-        {todos.length === 0 && (
+        {todos.length === 0 && !isLoading && (
           <div className="text-center text-gray-500">
             No tasks available. Add a new task to get started!
           </div>
         )}
+
         {todos.map((todo) => (
           <TodoItem
             key={todo._id.toString()}
             todo={todo}
             onToggle={handleToggleTodo}
             onDelete={handleDeleteTodo}
+            isLoading={isLoading}
           />
         ))}
       </div>

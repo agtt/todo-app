@@ -4,7 +4,8 @@ const Loading = () => {
   return (
     <div
       className="flex h-full w-full items-center justify-center p-4"
-      data-testid="loading-indicator"
+      id="loading"
+      data-testid="loading"
     >
       <div className="flex flex-col items-center gap-2">
         <div className="h-10 w-10 animate-spin rounded-full border-t-4 border-solid border-blue-500"></div>

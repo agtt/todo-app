@@ -11,3 +11,14 @@ export interface TodoItemProps {
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
 }
+
+export interface TodoInputProps {
+  value: string;
+  onChange: (value: string) => void;
+  onAdd: () => void;
+  isLoading?: boolean;
+}
+
+export interface ExtendedTodoItemProps extends TodoItemProps {
+  isLoading?: boolean;
+}
