@@ -67,6 +67,14 @@ The application will be available at `http://localhost:3000`
 
 Run tests with:
 
+1. Install packages;
+
+```bash
+bun install
+```
+
+2. Run Tests
+
 ```bash
 bun run test
 ```
