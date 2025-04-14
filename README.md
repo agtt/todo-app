@@ -30,7 +30,7 @@ A modern Todo application built with Next.js, TypeScript, tRPC, and MongoDB.
 
 ```bash
 git clone https://github.com/agtt/todo-app
-cd todo
+cd todo-app
 ```
 
 2. Create .env.local file
