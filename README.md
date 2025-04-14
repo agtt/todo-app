@@ -24,9 +24,7 @@ A modern Todo application built with Next.js, TypeScript, tRPC, and MongoDB.
 - Docker and Docker Compose
 - Git
 
-## Getting Started
-
-### Using Docker (Recommended)
+### Using Docker
 
 1. Clone the repository:
 
@@ -35,29 +33,20 @@ git clone https://github.com/agtt/todo-app
 cd todo
 ```
 
+2. Create .env.local file
+
+```
+DATABASE_URL=mongodb://mongo:27017/todo-banzai
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
 2. Start the application:
 
 ```bash
-docker-compose up
+docker compose up --build -d or docker-compose up --build -d
 ```
 
 The application will be available at `http://localhost:3000`
-
-### Manual Setup
-
-1. Install dependencies:
-
-```bash
-bun install
-```
-
-2. Start the development server:
-
-```bash
-bun dev
-```
-
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Development
 
