@@ -52,6 +52,8 @@ or
 docker compose up
 ```
 
+Note: For older versions of Docker, use `docker-compose` instead of `docker compose`.
+
 The application will be available at `http://localhost:3000`
 
 ## Development
