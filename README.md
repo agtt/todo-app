@@ -40,10 +40,16 @@ DATABASE_URL=mongodb://mongo:27017/todo-banzai
 NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 
-2. Start the application:
+3. Start the application:
 
 ```bash
-docker compose up --build -d or docker-compose up --build -d
+docker compose up --build -d
+```
+
+or
+
+```bash
+docker compose up
 ```
 
 The application will be available at `http://localhost:3000`
