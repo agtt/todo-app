@@ -9,6 +9,7 @@ A modern Todo application built with Next.js, TypeScript, tRPC, and MongoDB.
 - Persistent storage
 - Clean and intuitive UI
 - Type-safe API with tRPC
+- Email notifications with Resend
 
 ## Tech Stack
 
@@ -18,6 +19,7 @@ A modern Todo application built with Next.js, TypeScript, tRPC, and MongoDB.
 - MongoDB
 - Docker
 - Bun
+- Resend (Email Provider)
 
 ## Prerequisites
 
@@ -36,11 +38,25 @@ cd todo-app
 2. Create .env.local file
 
 ```
+# Database Configuration
 DATABASE_URL=mongodb://mongo:27017/todo-banzai
 NEXT_PUBLIC_API_URL=http://localhost:3000
+
+# Email Configuration (Resend)
+MAIL_PROVIDER="resend"
+MAIL_RESEND_API=your_resend_api_key
+MAIL_FROM="your_verified_email@domain.com"
 ```
 
-3. Start the application:
+Note: You need to:
+
+1. Sign up for a Resend account at https://resend.com
+2. Get your API key from the Resend dashboard
+3. Verify your sender email address in the Resend dashboard
+4. Replace `your_resend_api_key` with your actual Resend API key
+5. Replace `your_verified_email@domain.com` with your verified sender email address
+
+6. Start the application:
 
 ```bash
 docker compose up --build -d
