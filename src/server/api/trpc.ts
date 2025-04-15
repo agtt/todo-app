@@ -4,6 +4,7 @@ import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 import { models } from "../models";
+import { mail } from "@/libs/mail";
 
 /**
  * 1. CONTEXT
@@ -21,6 +22,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
   return {
     ...opts,
     models,
+    mail,
   };
 };
 
