@@ -10,6 +10,7 @@ A modern Todo application built with Next.js, TypeScript, tRPC, and MongoDB.
 - Clean and intuitive UI
 - Type-safe API with tRPC
 - Email notifications with Resend
+- Automatic email notification when all tasks are completed
 
 ## Tech Stack
 
@@ -46,6 +47,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 MAIL_PROVIDER="resend"
 MAIL_RESEND_API=your_resend_api_key
 MAIL_FROM="your_verified_email@domain.com"
+MAIL_RECIPIENT="recipient@example.com" # Email address to receive completion notifications
 ```
 
 Note: You need to:
@@ -55,8 +57,9 @@ Note: You need to:
 3. Verify your sender email address in the Resend dashboard
 4. Replace `your_resend_api_key` with your actual Resend API key
 5. Replace `your_verified_email@domain.com` with your verified sender email address
+6. Replace `recipient@example.com` with the email address that should receive completion notifications
 
-6. Start the application:
+7. Start the application:
 
 ```bash
 docker compose up --build -d

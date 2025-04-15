@@ -1,12 +1,13 @@
 import "server-only";
-import { resendProvider } from "./resend";
+import { resendProvider } from "./provider/resend";
 import type { MailProvider } from "@/types";
+import { env } from "@/env";
 
 const providers: Record<string, MailProvider> = {
   resend: resendProvider,
 };
 
-const providerKey = process.env.MAIL_PROVIDER || "resend";
+const providerKey = env.MAIL_PROVIDER || "resend";
 const selectedProvider = providers[providerKey];
 
 if (!selectedProvider) {
