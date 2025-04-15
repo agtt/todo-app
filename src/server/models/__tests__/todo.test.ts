@@ -26,6 +26,7 @@ const mockCollection = {
   findOne: jest.fn(),
   updateOne: jest.fn(),
   deleteOne: jest.fn(),
+  countDocuments: jest.fn(), 
 };
 
 const mockIdString = "507f1f77bcf86cd799439011";
@@ -149,4 +150,29 @@ describe("Todo Service", () => {
       expect(result).toBe(0);
     });
   });
+
+  describe("areAllTodosComplete", () => {
+    it("returns true when no incomplete todos found", async () => {
+      mockCollection.countDocuments = jest.fn().mockResolvedValue(0);
+
+      const { areAllTodosComplete } = await import("../todo");
+      const result = await areAllTodosComplete();
+
+      expect(getCollection).toHaveBeenCalledWith("todos");
+      expect(mockCollection.countDocuments).toHaveBeenCalledWith({ done: false });
+      expect(result).toBe(true);
+    });
+
+    it("returns false when there are incomplete todos", async () => {
+      mockCollection.countDocuments = jest.fn().mockResolvedValue(3);
+
+      const { areAllTodosComplete } = await import("../todo");
+      const result = await areAllTodosComplete();
+
+      expect(result).toBe(false);
+    });
+  });
+
 });
+
+
