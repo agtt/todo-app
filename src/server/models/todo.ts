@@ -1,7 +1,7 @@
 import "server-only";
 
 import { ObjectId } from "mongodb";
-import { getCollection } from "../db";
+import { getCollection } from "@/libs/db";
 import { ITodo } from "@/types/todo";
 
 const COLLECTION_NAME = "todos";

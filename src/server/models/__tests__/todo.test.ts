@@ -1,11 +1,11 @@
 /**
  * @jest-environment node
  */
-import { getCollection } from "@/server/db";
+import { getCollection } from "@/libs/db";
 import { getTodos, addTodo, toggleTodo, removeTodo } from "../todo";
 import { ObjectId } from "mongodb";
 
-jest.mock("@/server/db");
+jest.mock("@/libs/db");
 jest.mock("mongodb", () => {
   const original = jest.requireActual("mongodb");
   return {
@@ -14,7 +14,7 @@ jest.mock("mongodb", () => {
     ObjectId: jest.fn((id) =>
       typeof id === "string"
         ? original.ObjectId.createFromHexString(id)
-        : original.ObjectId(id)
+        : original.ObjectId(id),
     ),
   };
 });
@@ -48,7 +48,10 @@ describe("Todo Service", () => {
     it("returns todos array", async () => {
       const mockTodos = [
         setupMockTodo(),
-        setupMockTodo({ _id: new ObjectId("507f1f77bcf86cd799439012"), done: true }),
+        setupMockTodo({
+          _id: new ObjectId("507f1f77bcf86cd799439012"),
+          done: true,
+        }),
       ];
       mockCollection.toArray.mockResolvedValue(mockTodos);
 
@@ -86,7 +89,9 @@ describe("Todo Service", () => {
         throw new Error("Failed to insert todo");
       });
 
-      await expect(addTodo("Fail todo")).rejects.toThrow("Failed to insert todo");
+      await expect(addTodo("Fail todo")).rejects.toThrow(
+        "Failed to insert todo",
+      );
     });
   });
 
@@ -97,10 +102,12 @@ describe("Todo Service", () => {
 
       const result = await toggleTodo(mockIdString);
 
-      expect(mockCollection.findOne).toHaveBeenCalledWith({ _id: mockObjectId });
+      expect(mockCollection.findOne).toHaveBeenCalledWith({
+        _id: mockObjectId,
+      });
       expect(mockCollection.updateOne).toHaveBeenCalledWith(
         { _id: mockObjectId },
-        { $set: { done: true } }
+        { $set: { done: true } },
       );
       expect(result).toBe(1);
     });
@@ -128,7 +135,9 @@ describe("Todo Service", () => {
 
       const result = await removeTodo(mockIdString);
 
-      expect(mockCollection.deleteOne).toHaveBeenCalledWith({ _id: mockObjectId });
+      expect(mockCollection.deleteOne).toHaveBeenCalledWith({
+        _id: mockObjectId,
+      });
       expect(result).toBe(1);
     });
 
