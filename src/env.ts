@@ -7,6 +7,9 @@ dotenv.config();
 const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   DATABASE_URL: z.string().url(),
+  MAIL_PROVIDER: z.enum(["resend", "sendgrid", "mailgun", "smtp"]),
+  MAIL_FROM: z.string().email(),
+  MAIL_RESEND_API: z.string().optional(),
 });
 
 // Client-side env (Next.js)
