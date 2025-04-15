@@ -32,13 +32,8 @@ export const todoRouter = createTRPCRouter({
   remove: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const { removeTodo, areAllTodosComplete } = ctx.models.todo;
+      const { removeTodo } = ctx.models.todo;
       const count = await removeTodo(input.id);
-
-      await sendCompletionNotification({
-        provider: ctx.mail,
-        areAllTodosComplete,
-      });
 
       return { count };
     }),
