@@ -10,7 +10,7 @@ const serverSchema = z.object({
   MAIL_PROVIDER: z.enum(["resend", "sendgrid", "mailgun", "smtp"]),
   MAIL_FROM: z.string().email(),
   MAIL_RESEND_API: z.string().optional(),
-  MAIL_RECIPIENT: z.string().email(),
+  MAIL_RECEIPENT: z.string().email(),
 });
 
 // Client-side env (Next.js)
