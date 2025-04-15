@@ -11,6 +11,12 @@ export const getTodos = async (): Promise<ITodo[]> => {
   return collection.find().toArray();
 };
 
+export const areAllTodosComplete = async (): Promise<boolean> => {
+  const collection = await getCollection<ITodo>(COLLECTION_NAME);
+  const count = await collection.countDocuments({ done: false });
+  return count === 0;
+};
+
 export const addTodo = async (text: string): Promise<ObjectId> => {
   const collection = await getCollection<ITodo>(COLLECTION_NAME);
   const result = await collection.insertOne({ text, done: false } as ITodo);
